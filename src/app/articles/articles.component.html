@@ -25,15 +25,16 @@
           </thead>
           <tbody>
            <!--
+             searchPipes
                <tr *ngFor="let user of users | search :searchText ;let i=index ">
         --> 
                
-        <tr *ngFor="let user of users  ;let i=index ">
+        <tr *ngFor="let article of registartions  ;let i=index ">
               <td>{{(i+1)}}</td>
-              <td>{{ user.nomArticle}}</td>
-              <td>{{ user.quantiteArticle}}</td>
-              <td>{{ user.description}}</td>
-              <td>{{ user.prix}}</td>
+              <td>{{ article.nomArticle}}</td>
+              <td>{{ article.quantiteArticle}}</td>
+              <td>{{ article.description}}</td>
+              <td>{{ article.prix}}</td>
             
               <td><button class="btn btn-update" [routerLink]="['/updateArticle', i]"> <img src="../../assets/img/icons8-edit-48.png"></button>
                  <button class="btn btn-delete" (click)="supprimerArticle(i)"> <img src="../../assets/img/icons8-ajouter-une-corbeille-24.png"></button>

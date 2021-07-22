@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { ServicesService } from '../services.service';
 @Component({
   selector: 'app-update-articles',
   templateUrl: './update-articles.component.html',
@@ -17,7 +17,7 @@ export class UpdateArticlesComponent implements OnInit {
     description: new FormControl('',[Validators.required]),
     prix: new FormControl('',[Validators.required])
   })
-  constructor(private activatetRoute: ActivatedRoute, private router: Router) { }
+  constructor(private ArticleService: ServicesService, private activatetRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.index = this.activatetRoute.snapshot.params.index;
@@ -27,9 +27,13 @@ export class UpdateArticlesComponent implements OnInit {
     this.submitted=true;
     if (this.articleForm.invalid)
     {return};
-    this.users.splice(this.index, 1, this.articleForm.value);
+    //update using service
+    this.ArticleService.getAricleByIndex(this.index);
+    this.ArticleService.saveUpdate(this.index, this.articleForm.value);
+    this.router.navigateByUrl('/article')
+    /*this.users.splice(this.index, 1, this.articleForm.value);
     localStorage.setItem('registration', JSON.stringify(this.users));
-    this.router.navigateByUrl('/article');
+    this.router.navigateByUrl('/article');*/
  
   }
 
